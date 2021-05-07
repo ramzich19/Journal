@@ -21,7 +21,12 @@ from django.views.generic.base import View
 def oferta(request):
     return render(request, 'oferta.html')
 
-class CategoryViewSet(View):
+
+class GenreYear:
+    def get_genres(self):
+        return Category.objects.all()
+
+class CategoryViewSet(View,GenreYear):
 
     def get(self, request, pk):
 
@@ -33,9 +38,6 @@ class CategoryViewSet(View):
         return render(request, 'home.html', {'posts':posts, 'menu':menu, 'get_genres': get_genres, 'forum_list':forum_list} )
 
 
-class GenreYear:
-    def get_genres(self):
-        return Category.objects.all()
 
 class IndexList(View):
 

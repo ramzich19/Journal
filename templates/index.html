@@ -3,8 +3,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>ELAB - Social Network</title>
 
@@ -16,7 +16,26 @@
 <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
 <link rel="stylesheet" href="{% static 'css/main-style.css' %}">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
+
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -27,105 +46,75 @@
 <body>
 <div id="main-wrapper">
 
-  <!-- Top Toolbar -->
-  <div class="toolbar">
-    <div class="uou-block-1a blog">
-      <div class="container">
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
 
-        <ul class="social">
-          <li><a href="https://www.facebook.com/elabasia_digital_academy-105324734595469/" class="fa fa-facebook"></a></li>
-          <li><a href="https://www.instagram.com/elab.asia_digital_academy/?hl=ru" class="fa fa-instagram"></a></li>
-          <li><a href="https://www.youtube.com/channel/UCjwLOs7tgaZ1ArqTv10r8Zw" class="fa fa-youtube"></a></li>
-        </ul>
-        <div class="language"> <a href="#" class="toggle"><img src="{% static 'images/flags/48/RU.png' %}" alt=""> Личный Кабинет</a>
-
-          <ul>
-            {% if request.user.is_authenticated %}
-            {% url 'signout' as url_signout %}
-            <li><a href="{{url_signout}}"> Выйти</a></li>
-            {%else%}
-            {% url 'signin' as url_signin %}
-            <li{% if url_signin == request.path %}active{% endif %}><a href="{{ url_signin }}"> Авторизация</a></li>
-            {% url 'signup' as url_signup %}
-            <li{% if url_signup == request.path %}active{% endif %}><a href="{{ url_signup }}"> Регистрация</a></li>
-            {%endif%}
-          </ul>
-
-        </div>
-
-
-
-        <div class="language"> <a href="#" class="toggle"><img src="{% static 'images/flags/48/RU.png' %}" alt=""> RUS</a>
-          <ul>
-            <li><a href="#"><img src="{% static 'images/flags/32/US.png' %}" alt=""> ENG</a></li>
-            <li><a href="#"><img src="{% static 'images/flags/32/KZ.png' %}" alt=""> KZ</a></li>
-          </ul>
-        </div>
+      <div class="logo me-auto">
+        <h1><a href="index.html">Elab.Journal</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
-    </div>
-    <!-- end .uou-block-1a -->
-  </div>
-  <!-- end toolbar -->
 
-  <div class="box-shadow-for-ui">
-    <div class="uou-block-2b">
-      <div class="container"> <a href="index.html" class="logo"><img src="{% static 'images/logo.png' %}" alt=""></a>
-        <nav class="nav">
-          <ul class="sf-menu">
-            <li><a href="{% url "index"%}"><i class="fa  fa-home"></i></a></li>
-            {% if request.user.is_authenticated %}
-            {% url 'profile' as url_profile %}
-            <li> <a href="{% url "profile"%}">Профиль</a></li>
-            {%else%}
-            {%endif%}
-            <li class="active"><a href="{% url "home"%}">Блог</a></li>
-            <li><a href="{% url "projects"%}">Конференции и мероприятия</a></li>
-            <li><a href="{% url "contact"%}">Контакты</a></li>
-            {% if request.user.is_authenticated %}
-            {% url 'edit_page' as url_edit_page %}
-            <li><a href="{% url "edit_page"%}">Добавить свою статью</a></li>
-            {%else%}
-            {%endif%}
-          </ul>
-        </nav>
-        <div class="hamburger-menu">
-  <input id="menu__toggle" type="checkbox" />
-  <label class="menu__btn" for="menu__toggle" style="z-index: 11;">
-    <span></span>
-  </label>
-  <ul class="menu__box" style="z-Index: 10">
-    <li><a class="menu__item" href="{% url "index"%}">Главная</a></li>
-    {% if request.user.is_authenticated %}
-    {% url 'profile' as url_profile %}
-    <li><a class="menu__item" href="{% url "profile"%}">Профиль</a></li>
-    {%else%}
-    {%endif%}
-    <li><a class="menu__item" href="{% url "home"%}">Блог</a></li>
-    <li><a class="menu__item" href="{% url "projects"%}">Конференции и мероприятия</a></li>
-    {% if request.user.is_authenticated %}
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{% url "index"%}">Главная</a></li>
+          <li><a class="nav-link scrollto" href="{% url "home"%}">Блог</a></li>
+          <li><a class="nav-link scrollto " href="{% url "projects"%}">Мероприятия</a></li>
+             {% if request.user.is_authenticated %}
     {% url 'edit_page' as url_edit_page %}
-        <li><a class="menu__item" href="{% url "edit_page"%}">Добавить свою статью</a></li>
-        {%else%}
-        {%endif%}
-            <li><a class="menu__item" href="{% url "contact"%}">Контакты</a></li>
-            {% if request.user.is_authenticated %}
-            {% url 'signout' as url_signout %}
-            <li><a class="menu__item" href="{{url_signout}}">Выйти</a></li>
+          <li><a class="nav-link scrollto" href="{% url "edit_page"%}">Добавить статью</a></li>
             {%else%}
+        {%endif%}
+          <li class="dropdown"><a href=""><span>Мой профиль</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+                 {% if request.user.is_authenticated %}
+            {% url 'signout' as url_signout %}
+                <li><a href="{{url_signout}}">Выйти</a></li>
+                {%else%}
             {% url 'signin' as url_signin %}
-            <li><a class="menu__item" href="{{ url_signin }}">Авторизация</a></li>
-              {% url 'signup' as url_signup %}
-            <li><a class="menu__item" href="{{ url_signup }}">Регистрация</a></li>
-              {%endif%}
+              <li><a href="{{ url_signin }}">Войти</a></li>
+                {% url 'signup' as url_signup %}
+{#              <li><a href="{{ url_signup }}">Зарегистрироваться</a></li>#}
+ {%endif%}
+              {% if request.user.is_authenticated %}
+    {% url 'profile' as url_profile %}
+              <li><a href="{% url "profile"%}">Профиль</a></li>
+            {%else%}
+    {%endif%}
 
 
+              <!-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+               -->
 
-  </ul>
-</div>
-      </div>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"> <span>Язык</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">KZ</a></li>
+              <li><a href="#">EN</a></li>
+              <li><a href="#">RU</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+
+     
+      </nav><!-- .navbar -->
+
+
     </div>
-    <!-- end .uou-block-2b -->
-  </div>
+  </header><!-- End Header -->
 
   <!-- SUB Banner -->
   <div class="profile-bnr sub-bnr user-profile-bnr">

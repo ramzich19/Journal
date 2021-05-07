@@ -193,10 +193,12 @@
         <div class="row">
 
           <!-- Nav Tabs -->
-
+      {% block content %}
+  {% for genre in get_genres  %}
           <div class="profile-main">
-                  <h3>Категории</h3>
-
+                  <h3>{{ genre.name }}</h3>
+  {% endfor %}
+        {% endblock %}
                   <div class="profile-in">
                     <div class="row">
                       <div class="col-md-12">
